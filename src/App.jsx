@@ -5,7 +5,13 @@ const FollowMouse = () => {
   const [enabled, setEnabled] = useState(false)
   const [position, setPosition] = useState ({ x: 0, y: 0 })
   
-  useEffect(() => {
+
+  // los componentes en react se ejecutan en los siguientes 3 valores:
+  // [] >> array vacio se ejecuta solo cuando se monta el componente
+  // [enabled] >>se ejecuta cuando cambia "enabled" y cuando se monta el componente
+  // undefined >> se ejecuta cada vez que se renderiza el componente
+  
+    useEffect(() => {
     console.log ('efecto', { enabled })
     
     const handleMove = (event) => {
@@ -18,6 +24,7 @@ const FollowMouse = () => {
       window.addEventListener('pointermove', handleMove)
     }
     //cleanup
+    // el cleanup es la 2da vez que se renderiza el useEffect y se utiliza para limpiar el efecto. es muy buena practica utilizarlo SIEMPRE!
     // --> se ejecuta cuando el componente se desmonta,
     // --> cuando cambian las dependencias, antes de ejecutar
     // --> el efecto de nuevo
